@@ -26,7 +26,7 @@ while True:
     else:
         print('процентов')
 
- #3 zd
+ #2 zd
 cub_sum = 0
 number_sum =0
 cubs = []
