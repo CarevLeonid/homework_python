@@ -1,0 +1,74 @@
+#1
+print(type(15 * 3))
+print(type(15 / 3))
+print(type(15 // 3))
+print(type(15 ** 3))
+
+#2
+integer = ['в', '5', 'часов', '17', 'минут', 'температура', 'воздуха', 'была', '-5', 'градусов']
+i = 0
+while (i < len(integer)):
+    if integer[i].find('+') == 0 or integer[i].find('-') == 0:
+        integer.insert(i, '"')
+        integer.insert(i + 2, '"')
+        i += 1
+        if len(integer[i]) == 2:
+            integer[i] = integer[i][:1] + '0' + integer[i][1:]
+    if integer[i].isdigit() == True:
+        integer.insert(i, '"')
+        integer.insert(i + 2, '"')
+        i += 1
+        if len(integer[i]) == 1:
+            integer[i] = '0' + integer[i]
+
+    i += 1
+i = 0
+while (i < len(integer)):
+    if integer[i] == '"' and integer[i + 2] == '"':
+        print(integer[i], integer[i + 1], integer[i + 2], sep='', end=' ')
+        i += 3
+    else:
+        print(integer[i], end=' ')
+        i += 1
+
+#4
+names = ['инженер-конструктор Игорь', 'главный бухгалтер МАРИНА',
+         'токарь высшего разряда нИКОЛАй', 'директор аэлита']
+for i in names:
+    i = i.split(' ')
+    print('Привет, {}!'.format(i[-1].capitalize()))
+
+
+#5
+pricelist = [57.8, 46.51, 97, 79, 15.64, 80.7, 64.96, 78.2, 24.0, 40.5]
+# пункт А
+price_str = str()
+for i in pricelist:
+    i = str(i)
+    i = i.split('.')
+    if len(i) == 2:
+        if len(i[1]) == 1:
+              i[1] = '0' + i[1]
+        price_str += '{} руб {} коп, '.format(i[0], i[1])
+    elif len(i) == 1:
+        price_str += '{} руб 00 коп, '.format(i[0])
+price_str = price_str[:-2]
+print('Пункт А:')
+print(price_str)
+# пункт B
+id_before_sort = id(pricelist)
+pricelist.sort()
+id_after_sort = id(pricelist)
+if id_before_sort == id_after_sort:
+    print('Пункт B:')
+    print('Идентификатор списка перед сортировкой: ' + str(id_before_sort))
+    print('Идентификатор списка после сортировки: ' + str(id_after_sort))
+    print('Тем самым доказываю что объект списка после сортировки остался тот же')
+print(pricelist)
+# пункт C
+pricelist_decremented = pricelist[::-1]
+print('Пункт C:')
+print(pricelist_decremented)
+# пункт D
+print('Пункт D:')
+print(pricelist[-5:])
