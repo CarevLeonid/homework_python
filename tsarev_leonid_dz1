@@ -1,0 +1,60 @@
+#1zd
+while True:
+    time = int(input('введите количество секунд: '))
+    days = time // 84600
+    hours = (time % 84600) // 3600
+    minuts = ((time % 84600) % 3600) // 60
+    sekond = ((time % 84600) % 3600) % 60
+    if time >= 84600:
+        print (f'{days} дн, ' ,end=' ')
+    if time >= 3600:
+        print(f'{hours} ч, ',end=' ')
+    if time >= 60:
+        print(f'{minuts} мин,',end=' ' )
+
+    print(f'{sekond} сек.')
+
+#3zd
+while True:
+    num = int(input('введите число от 1 до 100: '))
+    if num % 100 >= 11 and num % 100 <= 14: #исключение
+        print('процентов')
+    elif num % 10 == 1:
+        print('процент')
+    elif num % 10 >= 2 and num % 10 <= 4:
+        print('процента')
+    else:
+        print('процентов')
+
+ #2 zd
+cub_sum = 0
+number_sum =0
+cubs = []
+idx = 1
+while idx <= 1000:
+    if idx % 2 !=0:
+        cubs.append(idx**3)
+        number =idx**3
+        while number !=0:
+            number_sum += number%10
+            number = number//10
+        if number_sum % 7 == 0:
+            cub_sum += idx**3
+        number_sum = 0
+
+    idx +=1
+print(cubs)
+print(cub_sum)
+cub_sum = 0
+idx = 0
+for idx in range(len(cubs)):
+    cubs[idx] += 17
+    number = cubs[idx]
+    while number !=0:
+        number_sum += number%10
+        number = number//10
+    if number_sum % 7 == 0:
+        cub_sum += cubs[idx]
+    number_sum = 0
+print(cubs)
+print(cub_sum)
