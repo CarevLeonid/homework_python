@@ -1,0 +1,59 @@
+#dz 2-3
+# from requests import get, utils
+# import datetime
+#
+# response = get('http://www.cbr.ru/scripts/XML_daily.asp')
+# encodings = utils.get_encoding_from_headers(response.headers)
+# content = response.content.decode(encoding=encodings)
+# def currency_rates(currency):
+#     date = content.find("Date")
+#     new_date = content[date +6:date + 16]
+#     date_list = new_date.split('.')
+#     print(datetime.date(year=int(date_list[2]), month=int(date_list[1]), day=int(date_list[0])))
+#
+#     if content.find(str(currency)) != -1:
+#         meaning_start = content.find("Value",content.find(str(currency)))
+#         meaning_end = content.find("</Value", content.find(str(currency)))
+#         a = content[meaning_start+6:meaning_end]
+#         return float(a.replace(",","."))
+#     else:
+#         return None
+# result = currency_rates(input("Валюта").upper())
+# print (result)
+#
+
+#4-5.utils
+from requests import get, utils
+import datetime
+
+
+response = get('http://www.cbr.ru/scripts/XML_daily.asp')
+encodings = utils.get_encoding_from_headers(response.headers)
+content = response.content.decode(encoding=encodings)
+
+def currency_rates(currency):
+    currency = currency.upper()
+    date = content.find("Date")
+    new_date = content[date +6:date + 16]
+    date_list = new_date.split('.')
+    print(datetime.date(year=int(date_list[2]), month=int(date_list[1]), day=int(date_list[0])))
+
+    if content.find(str(currency)) != -1:
+        meaning_start = content.find("Value",content.find(str(currency)))
+        meaning_end = content.find("</Value", content.find(str(currency)))
+        a = content[meaning_start+6:meaning_end]
+        return float(a.replace(",","."))
+    else:
+        print('None')
+        return None
+
+result = currency_rates(input("Валюта"))
+print (result)
+#
+# #####import utils
+# from utils import currency_rates
+# c=currency_rates('aud')
+# c=currency_rates('AZN')
+# c=currency_rates('gbp')
+# c=currency_rates('AMD')
+# c=currency_rates('usd')
